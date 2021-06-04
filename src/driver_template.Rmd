@@ -47,7 +47,7 @@ long_splits_rebased = wide_splits_rebased %>%
   pivot_longer(split_names,
                    names_to = "splitname",
                    values_to = "sectionDurationS") %>%
-  merge(splits_locations[,c('splitname','distance')],
+  merge(full_split_distances_df[,c('splitname','distance')],
          by='splitname')
 
 zero_df = data.frame(code=unique(long_splits_rebased$code)) %>%

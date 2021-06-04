@@ -36,6 +36,11 @@ stage_dist = stages[stages['stageId']==stageId,'distance']
 full_split_distances = c(split_distances, stage_dist-sum(split_distances))
 # Label distances using split names
 names(full_split_distances) = split_names
+full_split_distances_df = full_split_distances %>%
+                              as.data.frame() %>%
+  tibble::rownames_to_column() %>%
+                              mutate(distance=cumsum(full_split_distances)) %>%
+ select(c(rowname, distance)) %>% rename(splitname=rowname)
 ```
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE,}
