@@ -124,8 +124,9 @@ Summary of stage wins.
 ```{r warning=FALSE, message=FALSE}
 # Count number of stage wins by driver
 out_table %>% 
-  pivot_longer(!code, names_to = "Stage", values_to = "position") %>% filter(position==1) %>%
-group_by(code) %>%  summarise(wins = paste(Stage, sep=''), wincount=n()) %>% arrange(desc(wincount)) %>% formattable(align='c')
+  pivot_longer(!code, names_to = "Stage", values_to = "position") %>% filter(position==1) %>% select(c('code', 'Stage')) %>%
+group_by(code) %>%  summarise(wins = toString(Stage), wincount=n()) %>% arrange(desc(wincount)) %>% formattable(align='c')
+
 ```
 
 

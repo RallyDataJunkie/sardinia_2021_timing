@@ -53,7 +53,7 @@ class_WRC3 = cars %>% filter(eligibility=='WRC3') %>% select(entryId)
 
 #wrc = cars %>% filter(entryId<=22519)
 
-target_class = class_WRC2
+target_class = class_WRC
 use_group_rank = TRUE
 
 wrc = cars %>% filter(entryId %in% target_class$entryId)
