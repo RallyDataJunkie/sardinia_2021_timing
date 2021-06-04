@@ -218,7 +218,7 @@ multi_stage_wide_gap = multi_stage_times %>%
   filter(code %in% overall_long_gap_top10$code) 
 
 
-multi_stage_wide_gap
+#multi_stage_wide_gap
 
 
 multi_stage_long_gap = generate_spark_bar(multi_stage_wide_gap) %>%
