@@ -1,0 +1,125 @@
+```{r}
+cat(paste("Enter driver_template", driverEntryId),
+    file=logFile, sep='\n')
+```
+### Rebased Split Times
+
+`r driverCode`'s delta at each split compared to other drivers.
+
+```{r}
+# Pass in driverId
+driverCode = cars[cars$entryId==driverEntryId, 'code']
+driver_rebased = rebase(full_splits_wide, driverCode,
+                       split_names, id_col='code') %>%
+                  select(code, all_of(split_names)) #%>%
+                  #filter_at(vars(starts_with("split_")),
+                  #              any_vars(! is.na(.)))
+
+split_N_col_idx = which(colnames(driver_rebased) == 'split_N')[[1]]
+
+caption = paste0(stage_info_$code, ' split delta — ', driverCode)
+#driver_rebased
+```
+
+
+```{r}
+# TO DO - with all_vars(! is.na(.)), if there is an NA we lose the column?
+# CHECK
+wide_splits_rebased = driver_rebased[,c('code',split_names)] %>%
+                        filter_at(vars(starts_with("split_")),
+                                    any_vars(! is.na(.)))  
+
+# This errors if there is an NA? TO DO - black highlight?
+wide_splits_rebased %>% 
+          #replace(is.na(.), 1e-9) %>%
+            formattable(align='c',
+                    list(area(col = 2:split_N_col_idx) ~ color_tile2(c("green",'white',"red")),
+                 entryId=FALSE), caption=caption )
+#stop("TO HERE")
+```
+
+Accumulated stage time deltas at each split:
+
+```{r}
+# TO DO
+# the off_the_pace chart, and the simple max assignment, fail??
+long_splits_rebased = wide_splits_rebased %>%
+  pivot_longer(split_names,
+                   names_to = "splitname",
+                   values_to = "sectionDurationS") %>%
+  merge(splits_locations[,c('splitname','distance')],
+         by='splitname')
+
+zero_df = data.frame(code=unique(long_splits_rebased$code)) %>%
+            mutate(distance=0, sectionDurationS=0, splitname = 'split_0')
+
+long_splits_rebased = bind_rows(long_splits_rebased, zero_df)
+
+g = long_splits_rebased %>%
+        off_the_pace_chart(dist='distance',
+                           t='sectionDurationS',
+                           #label_typ='ggrepel',
+                           code='code', yflip=TRUE) 
+g + labs(title = paste0("Off-the-pace chart: ", 
+                   driverCode, ', ', stage_info_$code),
+  subtitle = "Time gained / lost over the stage",
+  x="Distance into stage (km)",
+  y="Time delta (s)",
+  caption = "Created by: RallyDataJunkie" # eg WRC Rally
+
+) 
+``` 
+
+
+
+### Within-Split Duration Deltas
+
+`r driverCode`'s delta in time to complete each split section compared to other drivers:
+
+```{r}
+# Pass in driverId
+
+driver_rebased = rebase(full_durations_wide, driverCode,
+                       split_names, id_col='code') %>%
+                  filter_at(vars(starts_with("split_")),
+                                any_vars(! is.na(.)))
+
+split_N_col_idx = which(colnames(driver_rebased) == 'split_N')[[1]]
+
+caption = paste0(stage_info_$code, ' split section delta — ', driverCode)
+driver_rebased[,c('code',split_names)] %>%
+                  filter_at(vars(starts_with("split_")),
+                                any_vars(! is.na(.)))  %>%
+  # Limit the decimal places displayed if we have near zero floating values
+  mutate_if(is.numeric, round, digits = 1)  %>%
+formattable( align='c',
+            list(area(col = 2:split_N_col_idx) ~ color_tile2(c("green",'white',"red")),
+                 entryId=FALSE), caption=caption)
+```
+
+### Within-Split Pace Deltas
+
+```{r}
+driver_rebased = rebase(section_pace_wide, driverCode,
+                       split_names, id_col='code') %>%
+                  select(code, all_of(split_names)) %>%
+                  mutate_if(is.numeric, round, digits = 2)  #%>%
+                  #filter_at(vars(starts_with("split_")),
+                  #              any_vars(! is.na(.)))
+
+split_N_col_idx = which(colnames(driver_rebased) == 'split_N')[[1]]
+
+caption = paste0(stage_info_$code, ' split section pace delta — ', driverCode)
+driver_rebased[,c('code',split_names)] %>%
+                  filter_at(vars(starts_with("split_")),
+                                any_vars(! is.na(.)))  %>%
+            #replace(is.na(.), 1e-9) %>%
+            formattable(align='c',
+                    list(area(col = 2:split_N_col_idx) ~ color_tile2(c("green",'white',"red")),
+                 entryId=FALSE), caption=caption )
+```
+
+```{r}
+cat(paste("Leave driver_template", driverEntryId),
+    file=logFile, sep='\n')
+```
