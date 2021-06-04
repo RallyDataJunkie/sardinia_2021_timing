@@ -316,9 +316,35 @@ multi_overall_wide_pos_$overall_poschart = gt_overall_pos_plots
 
 ## Stage Pace
 
-Stage pace charts.
+Stage pace charts rebased to overall leader.
 
-*Coming soon...*
+```{r warning=FALSE }
+stage_range = c(start=stage_codes[1],
+                end=stage_codes[length(stage_codes)])
+
+
+multi_stage_pace = get_multi_stage_pace(multi_stage_times, cars)
+
+
+pace_wide = get_multi_stage_generic_wide(multi_stage_pace,
+                                         stage_codes, 'pace',
+                                         # Unique group keys required
+                                         # Driver code not guaranteed unique
+                                         group_key=c('code_driver'),
+                                         spread_key='code')
+
+overall_lead_code = multi_stage_wide_pos[1, 'code']
+
+pace_wide_rebased = rebase(pace_wide, overall_lead_code, stage_codes,
+                           id_col='code_driver')
+
+pace_stage = pace_wide_rebased %>% 
+                gather(code, pace,
+                       stage_range['start']:stage_range['end']) %>%
+                merge(stages[,c('code', 'start_dist', 'cum_dist')],
+                          by='code')
+pace_map(pace_stage) + ylim(-2, 2) + xlab("Accumulated distance (km)")
+```
 
 
 ## Rally Sparkline Summary
