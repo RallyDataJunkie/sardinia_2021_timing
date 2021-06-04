@@ -75,7 +75,7 @@ cat("Done setup", file=logFile, sep='\n')
 
 ```{r  message=FALSE, echo=FALSE, error=FALSE, warning=FALSE, results='asis'}
 #stage_list=list("SS1", "SS2", "SS3", "SS4", "SS5", "SS6", "SS7", "SS8", "SS9", "SS10", "SS11", "SS12", "SS13", "SS14", "SS15", "SS16", "SS17", "SS18", "SS19", "SS20")
-stage_list=list("SS1", "SS2", "SS3", "SS4", "SS5", "SS6", "SS7")
+stage_list=list("SS1", "SS2", "SS3", "SS4", "SS5", "SS6", "SS7", "SS8")
 omit_stage_splits = c()
 
 cutoff_delta = -1 #1500000 # if negative ignore
@@ -89,6 +89,37 @@ src = knit_expand("overall-template.Rmd")
 # Loop Reports {-}
 
 *Forthcoming... summary reports for each loop.*
+
+```{r}
+#Folded text example: https://stackoverflow.com/a/53812694/454773
+```
+<style>
+.fold-btn { 
+  float: right; 
+  margin: 5px 5px 0 0;
+}
+.fold { 
+  border: 1px solid black;
+  min-height: 40px;
+}
+</style>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  $folds = $(".fold");
+  $folds.wrapInner("<div class=\"fold-blck\">"); // wrap a div container around content
+  $folds.prepend("<button class=\"fold-btn\">Unfold</button>");  // add a button
+  $(".fold-blck").toggle();  // fold all blocks
+  $(".fold-btn").on("click", function() {  // add onClick event
+    $(this).text($(this).text() === "Fold" ? "Unfold" : "Fold");  // if the text equals "Fold", change it to "Unfold"or else to "Fold" 
+    $(this).next(".fold-blck").toggle("linear");  // "swing" is the default easing function. This can be further customized in its speed or the overall animation itself.
+  })
+});
+</script>
+
+<div class="fold">
+Loop reports will provide summaries and views over stage results on a *per loop* basis.
+</div>
 
 ```{r looper, message=FALSE, echo=FALSE, error=FALSE, warning=FALSE, results='asis'}
 

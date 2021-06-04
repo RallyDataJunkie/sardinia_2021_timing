@@ -73,6 +73,70 @@
 <script src="libs/sparkline-binding-2.0/sparkline.js"></script>
 
 
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
 
 </head>
 
@@ -93,12 +157,13 @@
 <li class="chapter" data-level="" data-path="overall-standings.html"><a href="overall-standings.html"><i class="fa fa-check"></i>Overall Standings</a>
 <ul>
 <li class="chapter" data-level="0.1" data-path="overall-standings.html"><a href="overall-standings.html#overall-position"><i class="fa fa-check"></i><b>0.1</b> Overall Position</a></li>
-<li class="chapter" data-level="0.2" data-path="overall-standings.html"><a href="overall-standings.html#gap-to-overall-leader-at-each-stage-end"><i class="fa fa-check"></i><b>0.2</b> Gap to Overall Leader at Each Stage End</a></li>
-<li class="chapter" data-level="0.3" data-path="overall-standings.html"><a href="overall-standings.html#stage-position-history"><i class="fa fa-check"></i><b>0.3</b> Stage Position History</a></li>
-<li class="chapter" data-level="0.4" data-path="overall-standings.html"><a href="overall-standings.html#stage-wins-summary"><i class="fa fa-check"></i><b>0.4</b> Stage Wins Summary</a></li>
-<li class="chapter" data-level="0.5" data-path="overall-standings.html"><a href="overall-standings.html#stage-pace"><i class="fa fa-check"></i><b>0.5</b> Stage Pace</a></li>
-<li class="chapter" data-level="0.6" data-path="overall-standings.html"><a href="overall-standings.html#rally-sparkline-summary"><i class="fa fa-check"></i><b>0.6</b> Rally Sparkline Summary</a></li>
-<li class="chapter" data-level="0.7" data-path="overall-standings.html"><a href="overall-standings.html#stage-times"><i class="fa fa-check"></i><b>0.7</b> Stage Times</a></li>
+<li class="chapter" data-level="0.2" data-path="overall-standings.html"><a href="overall-standings.html#off-the-pace-chart"><i class="fa fa-check"></i><b>0.2</b> Off-the-Pace Chart</a></li>
+<li class="chapter" data-level="0.3" data-path="overall-standings.html"><a href="overall-standings.html#gap-to-overall-leader-at-each-stage-end"><i class="fa fa-check"></i><b>0.3</b> Gap to Overall Leader at Each Stage End</a></li>
+<li class="chapter" data-level="0.4" data-path="overall-standings.html"><a href="overall-standings.html#stage-position-history"><i class="fa fa-check"></i><b>0.4</b> Stage Position History</a></li>
+<li class="chapter" data-level="0.5" data-path="overall-standings.html"><a href="overall-standings.html#stage-wins-summary"><i class="fa fa-check"></i><b>0.5</b> Stage Wins Summary</a></li>
+<li class="chapter" data-level="0.6" data-path="overall-standings.html"><a href="overall-standings.html#stage-pace"><i class="fa fa-check"></i><b>0.6</b> Stage Pace</a></li>
+<li class="chapter" data-level="0.7" data-path="overall-standings.html"><a href="overall-standings.html#rally-sparkline-summary"><i class="fa fa-check"></i><b>0.7</b> Rally Sparkline Summary</a></li>
+<li class="chapter" data-level="0.8" data-path="overall-standings.html"><a href="overall-standings.html#stage-times"><i class="fa fa-check"></i><b>0.8</b> Stage Times</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="loop-reports.html"><a href="loop-reports.html"><i class="fa fa-check"></i>Loop Reports</a></li>
 <li class="chapter" data-level="1" data-path="ss1-results.html"><a href="ss1-results.html"><i class="fa fa-check"></i><b>1</b> SS1 Results</a>
@@ -609,6 +674,65 @@
 <li class="chapter" data-level="7.12.3" data-path="ss7-results.html"><a href="ss7-results.html#within-split-pace-deltas-67"><i class="fa fa-check"></i><b>7.12.3</b> Within-Split Pace Deltas</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="8" data-path="ss8-results.html"><a href="ss8-results.html"><i class="fa fa-check"></i><b>8</b> SS8 Results</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="ss8-results.html"><a href="ss8-results.html#stage-ss8-splits-analysis"><i class="fa fa-check"></i><b>8.1</b> Stage SS8 Splits Analysis</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="ss8-results.html"><a href="ss8-results.html#split-locations-7"><i class="fa fa-check"></i><b>8.1.1</b> Split Locations</a></li>
+<li class="chapter" data-level="8.1.2" data-path="ss8-results.html"><a href="ss8-results.html#stage-split-times-result-7"><i class="fa fa-check"></i><b>8.1.2</b> Stage Split Times &amp; Result</a></li>
+<li class="chapter" data-level="8.1.3" data-path="ss8-results.html"><a href="ss8-results.html#split-time-rankings-7"><i class="fa fa-check"></i><b>8.1.3</b> Split Time Rankings</a></li>
+<li class="chapter" data-level="8.1.4" data-path="ss8-results.html"><a href="ss8-results.html#split-section-pace-7"><i class="fa fa-check"></i><b>8.1.4</b> Split Section Pace</a></li>
+<li class="chapter" data-level="8.1.5" data-path="ss8-results.html"><a href="ss8-results.html#pace-chart-7"><i class="fa fa-check"></i><b>8.1.5</b> Pace Chart</a></li>
+<li class="chapter" data-level="8.1.6" data-path="ss8-results.html"><a href="ss8-results.html#ultimate-stage-comparisons-7"><i class="fa fa-check"></i><b>8.1.6</b> Ultimate Stage Comparisons</a></li>
+<li class="chapter" data-level="8.1.7" data-path="ss8-results.html"><a href="ss8-results.html#split-section-pace-distribution-7"><i class="fa fa-check"></i><b>8.1.7</b> Split Section Pace Distribution</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="ss8-results.html"><a href="ss8-results.html#driver-report-ss8---ogi"><i class="fa fa-check"></i><b>8.2</b> Driver Report, SS8 - OGI</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="ss8-results.html"><a href="ss8-results.html#rebased-split-times-68"><i class="fa fa-check"></i><b>8.2.1</b> Rebased Split Times</a></li>
+<li class="chapter" data-level="8.2.2" data-path="ss8-results.html"><a href="ss8-results.html#within-split-duration-deltas-68"><i class="fa fa-check"></i><b>8.2.2</b> Within-Split Duration Deltas</a></li>
+<li class="chapter" data-level="8.2.3" data-path="ss8-results.html"><a href="ss8-results.html#within-split-pace-deltas-68"><i class="fa fa-check"></i><b>8.2.3</b> Within-Split Pace Deltas</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="ss8-results.html"><a href="ss8-results.html#driver-report-ss8---neu"><i class="fa fa-check"></i><b>8.3</b> Driver Report, SS8 - NEU</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="ss8-results.html"><a href="ss8-results.html#rebased-split-times-69"><i class="fa fa-check"></i><b>8.3.1</b> Rebased Split Times</a></li>
+<li class="chapter" data-level="8.3.2" data-path="ss8-results.html"><a href="ss8-results.html#within-split-duration-deltas-69"><i class="fa fa-check"></i><b>8.3.2</b> Within-Split Duration Deltas</a></li>
+<li class="chapter" data-level="8.3.3" data-path="ss8-results.html"><a href="ss8-results.html#within-split-pace-deltas-69"><i class="fa fa-check"></i><b>8.3.3</b> Within-Split Pace Deltas</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="ss8-results.html"><a href="ss8-results.html#driver-report-ss8---eva"><i class="fa fa-check"></i><b>8.4</b> Driver Report, SS8 - EVA</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="ss8-results.html"><a href="ss8-results.html#rebased-split-times-70"><i class="fa fa-check"></i><b>8.4.1</b> Rebased Split Times</a></li>
+<li class="chapter" data-level="8.4.2" data-path="ss8-results.html"><a href="ss8-results.html#within-split-duration-deltas-70"><i class="fa fa-check"></i><b>8.4.2</b> Within-Split Duration Deltas</a></li>
+<li class="chapter" data-level="8.4.3" data-path="ss8-results.html"><a href="ss8-results.html#within-split-pace-deltas-70"><i class="fa fa-check"></i><b>8.4.3</b> Within-Split Pace Deltas</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="ss8-results.html"><a href="ss8-results.html#driver-report-ss8---tän"><i class="fa fa-check"></i><b>8.5</b> Driver Report, SS8 - TÄN</a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="ss8-results.html"><a href="ss8-results.html#rebased-split-times-71"><i class="fa fa-check"></i><b>8.5.1</b> Rebased Split Times</a></li>
+<li class="chapter" data-level="8.5.2" data-path="ss8-results.html"><a href="ss8-results.html#within-split-duration-deltas-71"><i class="fa fa-check"></i><b>8.5.2</b> Within-Split Duration Deltas</a></li>
+<li class="chapter" data-level="8.5.3" data-path="ss8-results.html"><a href="ss8-results.html#within-split-pace-deltas-71"><i class="fa fa-check"></i><b>8.5.3</b> Within-Split Pace Deltas</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="ss8-results.html"><a href="ss8-results.html#driver-report-ss8---rov"><i class="fa fa-check"></i><b>8.6</b> Driver Report, SS8 - ROV</a></li>
+<li class="chapter" data-level="8.7" data-path="ss8-results.html"><a href="ss8-results.html#driver-report-ss8---kat"><i class="fa fa-check"></i><b>8.7</b> Driver Report, SS8 - KAT</a>
+<ul>
+<li class="chapter" data-level="8.7.1" data-path="ss8-results.html"><a href="ss8-results.html#rebased-split-times-72"><i class="fa fa-check"></i><b>8.7.1</b> Rebased Split Times</a></li>
+<li class="chapter" data-level="8.7.2" data-path="ss8-results.html"><a href="ss8-results.html#within-split-duration-deltas-72"><i class="fa fa-check"></i><b>8.7.2</b> Within-Split Duration Deltas</a></li>
+<li class="chapter" data-level="8.7.3" data-path="ss8-results.html"><a href="ss8-results.html#within-split-pace-deltas-72"><i class="fa fa-check"></i><b>8.7.3</b> Within-Split Pace Deltas</a></li>
+</ul></li>
+<li class="chapter" data-level="8.8" data-path="ss8-results.html"><a href="ss8-results.html#driver-report-ss8---gre"><i class="fa fa-check"></i><b>8.8</b> Driver Report, SS8 - GRE</a></li>
+<li class="chapter" data-level="8.9" data-path="ss8-results.html"><a href="ss8-results.html#driver-report-ss8---sor"><i class="fa fa-check"></i><b>8.9</b> Driver Report, SS8 - SOR</a>
+<ul>
+<li class="chapter" data-level="8.9.1" data-path="ss8-results.html"><a href="ss8-results.html#rebased-split-times-73"><i class="fa fa-check"></i><b>8.9.1</b> Rebased Split Times</a></li>
+<li class="chapter" data-level="8.9.2" data-path="ss8-results.html"><a href="ss8-results.html#within-split-duration-deltas-73"><i class="fa fa-check"></i><b>8.9.2</b> Within-Split Duration Deltas</a></li>
+<li class="chapter" data-level="8.9.3" data-path="ss8-results.html"><a href="ss8-results.html#within-split-pace-deltas-73"><i class="fa fa-check"></i><b>8.9.3</b> Within-Split Pace Deltas</a></li>
+</ul></li>
+<li class="chapter" data-level="8.10" data-path="ss8-results.html"><a href="ss8-results.html#driver-report-ss8---sol"><i class="fa fa-check"></i><b>8.10</b> Driver Report, SS8 - SOL</a></li>
+<li class="chapter" data-level="8.11" data-path="ss8-results.html"><a href="ss8-results.html#driver-report-ss8---sun"><i class="fa fa-check"></i><b>8.11</b> Driver Report, SS8 - SUN</a></li>
+<li class="chapter" data-level="8.12" data-path="ss8-results.html"><a href="ss8-results.html#driver-report-ss8---lou"><i class="fa fa-check"></i><b>8.12</b> Driver Report, SS8 - LOU</a>
+<ul>
+<li class="chapter" data-level="8.12.1" data-path="ss8-results.html"><a href="ss8-results.html#rebased-split-times-74"><i class="fa fa-check"></i><b>8.12.1</b> Rebased Split Times</a></li>
+<li class="chapter" data-level="8.12.2" data-path="ss8-results.html"><a href="ss8-results.html#within-split-duration-deltas-74"><i class="fa fa-check"></i><b>8.12.2</b> Within-Split Duration Deltas</a></li>
+<li class="chapter" data-level="8.12.3" data-path="ss8-results.html"><a href="ss8-results.html#within-split-pace-deltas-74"><i class="fa fa-check"></i><b>8.12.3</b> Within-Split Pace Deltas</a></li>
+</ul></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://rallydatajunkie.com/"><em>RallyDataJunkie.com</em></a></li>
 
@@ -633,7 +757,7 @@
 <h1><span class="header-section-number">6</span> SS6 Results</h1>
 <table class="table table-condensed">
 <caption>
-<span id="tab:unnamed-chunk-666">Table 6.1: </span>Top 10, SS6, ERULA - TULA 1 (14.97km)
+<span id="tab:unnamed-chunk-668">Table 6.1: </span>Top 10, SS6, ERULA - TULA 1 (14.97km)
 </caption>
 <thead>
 <tr>
@@ -1149,7 +1273,7 @@ LOU
 <p>Rank of each split time:</p>
 <table class="table table-condensed">
 <caption>
-<span id="tab:unnamed-chunk-677">Table 6.2: </span>SS6 split time rank
+<span id="tab:unnamed-chunk-679">Table 6.2: </span>SS6 split time rank
 </caption>
 <thead>
 <tr>
@@ -1312,7 +1436,7 @@ LOU
 <p>Rank on each split section:</p>
 <table class="table table-condensed">
 <caption>
-<span id="tab:unnamed-chunk-678">Table 6.3: </span>SS6 split section rank
+<span id="tab:unnamed-chunk-680">Table 6.3: </span>SS6 split section rank
 </caption>
 <thead>
 <tr>
@@ -1639,7 +1763,7 @@ LOU
 <div id="pace-chart-5" class="section level3" number="6.1.5">
 <h3><span class="header-section-number">6.1.5</span> Pace Chart</h3>
 <p>Pace relative to the stage winner.</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-680-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-682-1.png" width="672" /></p>
 </div>
 <div id="ultimate-stage-comparisons-5" class="section level3" number="6.1.6">
 <h3><span class="header-section-number">6.1.6</span> Ultimate Stage Comparisons</h3>
@@ -1655,7 +1779,7 @@ LOU
 <p>Driver times compared to the first ranked recorded split time at each split:</p>
 <table class="table table-condensed">
 <caption>
-<span id="tab:unnamed-chunk-682">Table 6.4: </span>SS6 ultimate split actual deltas
+<span id="tab:unnamed-chunk-684">Table 6.4: </span>SS6 ultimate split actual deltas
 </caption>
 <thead>
 <tr>
@@ -1838,7 +1962,7 @@ ultimate
 <p>Split durations rebased relative to the fastest transit of each split section:</p>
 <table class="table table-condensed">
 <caption>
-<span id="tab:unnamed-chunk-683">Table 6.5: </span>SS6 ultimate section deltas
+<span id="tab:unnamed-chunk-685">Table 6.5: </span>SS6 ultimate section deltas
 </caption>
 <thead>
 <tr>
@@ -2021,7 +2145,7 @@ ultimate
 <p>Actual split times relative to the accumulated ultimate split section times:</p>
 <table class="table table-condensed">
 <caption>
-<span id="tab:unnamed-chunk-684">Table 6.6: </span>SS6 accumulated ultimate section deltas
+<span id="tab:unnamed-chunk-686">Table 6.6: </span>SS6 accumulated ultimate section deltas
 </caption>
 <thead>
 <tr>
@@ -2203,7 +2327,7 @@ ultimate
 <div id="split-section-pace-distribution-5" class="section level3" number="6.1.7">
 <h3><span class="header-section-number">6.1.7</span> Split Section Pace Distribution</h3>
 <p>Distribution of pace values for each split section:</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-685-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-687-1.png" width="672" /></p>
 </div>
 </div>
 <div id="driver-report-ss6---ogi" class="section level2" number="6.2">
@@ -2211,7 +2335,7 @@ ultimate
 <p>Stage report for OGI.</p>
 <table class="table table-condensed">
 <caption>
-<span id="tab:unnamed-chunk-689">Table 6.7: </span>SS6 stage report — OGI
+<span id="tab:unnamed-chunk-691">Table 6.7: </span>SS6 stage report — OGI
 </caption>
 <thead>
 <tr>
@@ -2443,7 +2567,7 @@ ROV
 <p>OGI’s delta at each split compared to other drivers.</p>
 <table class="table table-condensed">
 <caption>
-<span id="tab:unnamed-chunk-692">Table 6.8: </span>SS6 split delta — OGI
+<span id="tab:unnamed-chunk-694">Table 6.8: </span>SS6 split delta — OGI
 </caption>
 <thead>
 <tr>
@@ -2604,14 +2728,14 @@ LOU
 </tbody>
 </table>
 <p>Accumulated stage time deltas at each split:</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-693-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-695-1.png" width="672" /></p>
 </div>
 <div id="within-split-duration-deltas-50" class="section level3" number="6.2.2">
 <h3><span class="header-section-number">6.2.2</span> Within-Split Duration Deltas</h3>
 <p>OGI’s delta in time to complete each split section compared to other drivers:</p>
 <table class="table table-condensed">
 <caption>
-<span id="tab:unnamed-chunk-694">Table 6.9: </span>SS6 split section delta — OGI
+<span id="tab:unnamed-chunk-696">Table 6.9: </span>SS6 split section delta — OGI
 </caption>
 <thead>
 <tr>
@@ -2776,7 +2900,7 @@ LOU
 <h3><span class="header-section-number">6.2.3</span> Within-Split Pace Deltas</h3>
 <table class="table table-condensed">
 <caption>
-<span id="tab:unnamed-chunk-695">Table 6.10: </span>SS6 split section pace delta — OGI
+<span id="tab:unnamed-chunk-697">Table 6.10: </span>SS6 split section pace delta — OGI
 </caption>
 <thead>
 <tr>
@@ -2943,7 +3067,7 @@ LOU
 <p>Stage report for NEU.</p>
 <table class="table table-condensed">
 <caption>
-<span id="tab:unnamed-chunk-699">Table 6.11: </span>SS6 stage report — NEU
+<span id="tab:unnamed-chunk-701">Table 6.11: </span>SS6 stage report — NEU
 </caption>
 <thead>
 <tr>
@@ -3175,7 +3299,7 @@ ROV
 <p>NEU’s delta at each split compared to other drivers.</p>
 <table class="table table-condensed">
 <caption>
-<span id="tab:unnamed-chunk-702">Table 6.12: </span>SS6 split delta — NEU
+<span id="tab:unnamed-chunk-704">Table 6.12: </span>SS6 split delta — NEU
 </caption>
 <thead>
 <tr>
@@ -3336,14 +3460,14 @@ LOU
 </tbody>
 </table>
 <p>Accumulated stage time deltas at each split:</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-703-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-705-1.png" width="672" /></p>
 </div>
 <div id="within-split-duration-deltas-51" class="section level3" number="6.3.2">
 <h3><span class="header-section-number">6.3.2</span> Within-Split Duration Deltas</h3>
 <p>NEU’s delta in time to complete each split section compared to other drivers:</p>
 <table class="table table-condensed">
 <caption>
-<span id="tab:unnamed-chunk-704">Table 6.13: </span>SS6 split section delta — NEU
+<span id="tab:unnamed-chunk-706">Table 6.13: </span>SS6 split section delta — NEU
 </caption>
 <thead>
 <tr>
@@ -3508,7 +3632,7 @@ LOU
 <h3><span class="header-section-number">6.3.3</span> Within-Split Pace Deltas</h3>
 <table class="table table-condensed">
 <caption>
-<span id="tab:unnamed-chunk-705">Table 6.14: </span>SS6 split section pace delta — NEU
+<span id="tab:unnamed-chunk-707">Table 6.14: </span>SS6 split section pace delta — NEU
 </caption>
 <thead>
 <tr>
@@ -3675,7 +3799,7 @@ LOU
 <p>Stage report for EVA.</p>
 <table class="table table-condensed">
 <caption>
-<span id="tab:unnamed-chunk-709">Table 6.15: </span>SS6 stage report — EVA
+<span id="tab:unnamed-chunk-711">Table 6.15: </span>SS6 stage report — EVA
 </caption>
 <thead>
 <tr>
@@ -3907,7 +4031,7 @@ ROV
 <p>EVA’s delta at each split compared to other drivers.</p>
 <table class="table table-condensed">
 <caption>
-<span id="tab:unnamed-chunk-712">Table 6.16: </span>SS6 split delta — EVA
+<span id="tab:unnamed-chunk-714">Table 6.16: </span>SS6 split delta — EVA
 </caption>
 <thead>
 <tr>
@@ -4068,14 +4192,14 @@ LOU
 </tbody>
 </table>
 <p>Accumulated stage time deltas at each split:</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-713-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-715-1.png" width="672" /></p>
 </div>
 <div id="within-split-duration-deltas-52" class="section level3" number="6.4.2">
 <h3><span class="header-section-number">6.4.2</span> Within-Split Duration Deltas</h3>
 <p>EVA’s delta in time to complete each split section compared to other drivers:</p>
 <table class="table table-condensed">
 <caption>
-<span id="tab:unnamed-chunk-714">Table 6.17: </span>SS6 split section delta — EVA
+<span id="tab:unnamed-chunk-716">Table 6.17: </span>SS6 split section delta — EVA
 </caption>
 <thead>
 <tr>
@@ -4240,7 +4364,7 @@ LOU
 <h3><span class="header-section-number">6.4.3</span> Within-Split Pace Deltas</h3>
 <table class="table table-condensed">
 <caption>
-<span id="tab:unnamed-chunk-715">Table 6.18: </span>SS6 split section pace delta — EVA
+<span id="tab:unnamed-chunk-717">Table 6.18: </span>SS6 split section pace delta — EVA
 </caption>
 <thead>
 <tr>
@@ -4407,7 +4531,7 @@ LOU
 <p>Stage report for TÄN.</p>
 <table class="table table-condensed">
 <caption>
-<span id="tab:unnamed-chunk-719">Table 6.19: </span>SS6 stage report — TÄN
+<span id="tab:unnamed-chunk-721">Table 6.19: </span>SS6 stage report — TÄN
 </caption>
 <thead>
 <tr>
@@ -4639,7 +4763,7 @@ ROV
 <p>TÄN’s delta at each split compared to other drivers.</p>
 <table class="table table-condensed">
 <caption>
-<span id="tab:unnamed-chunk-722">Table 6.20: </span>SS6 split delta — TÄN
+<span id="tab:unnamed-chunk-724">Table 6.20: </span>SS6 split delta — TÄN
 </caption>
 <thead>
 <tr>
@@ -4800,14 +4924,14 @@ LOU
 </tbody>
 </table>
 <p>Accumulated stage time deltas at each split:</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-723-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-725-1.png" width="672" /></p>
 </div>
 <div id="within-split-duration-deltas-53" class="section level3" number="6.5.2">
 <h3><span class="header-section-number">6.5.2</span> Within-Split Duration Deltas</h3>
 <p>TÄN’s delta in time to complete each split section compared to other drivers:</p>
 <table class="table table-condensed">
 <caption>
-<span id="tab:unnamed-chunk-724">Table 6.21: </span>SS6 split section delta — TÄN
+<span id="tab:unnamed-chunk-726">Table 6.21: </span>SS6 split section delta — TÄN
 </caption>
 <thead>
 <tr>
@@ -4972,7 +5096,7 @@ LOU
 <h3><span class="header-section-number">6.5.3</span> Within-Split Pace Deltas</h3>
 <table class="table table-condensed">
 <caption>
-<span id="tab:unnamed-chunk-725">Table 6.22: </span>SS6 split section pace delta — TÄN
+<span id="tab:unnamed-chunk-727">Table 6.22: </span>SS6 split section pace delta — TÄN
 </caption>
 <thead>
 <tr>
@@ -5139,7 +5263,7 @@ LOU
 <p>Stage report for ROV.</p>
 <table class="table table-condensed">
 <caption>
-<span id="tab:unnamed-chunk-729">Table 6.23: </span>SS6 stage report — ROV
+<span id="tab:unnamed-chunk-731">Table 6.23: </span>SS6 stage report — ROV
 </caption>
 <thead>
 <tr>
@@ -5371,7 +5495,7 @@ ROV
 <p>ROV’s delta at each split compared to other drivers.</p>
 <table class="table table-condensed">
 <caption>
-<span id="tab:unnamed-chunk-732">Table 6.24: </span>SS6 split delta — ROV
+<span id="tab:unnamed-chunk-734">Table 6.24: </span>SS6 split delta — ROV
 </caption>
 <thead>
 <tr>
@@ -5398,14 +5522,14 @@ split_N
 </tbody>
 </table>
 <p>Accumulated stage time deltas at each split:</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-733-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-735-1.png" width="672" /></p>
 </div>
 <div id="within-split-duration-deltas-54" class="section level3" number="6.6.2">
 <h3><span class="header-section-number">6.6.2</span> Within-Split Duration Deltas</h3>
 <p>ROV’s delta in time to complete each split section compared to other drivers:</p>
 <table class="table table-condensed">
 <caption>
-<span id="tab:unnamed-chunk-734">Table 6.25: </span>SS6 split section delta — ROV
+<span id="tab:unnamed-chunk-736">Table 6.25: </span>SS6 split section delta — ROV
 </caption>
 <thead>
 <tr>
@@ -5436,7 +5560,7 @@ split_N
 <h3><span class="header-section-number">6.6.3</span> Within-Split Pace Deltas</h3>
 <table class="table table-condensed">
 <caption>
-<span id="tab:unnamed-chunk-735">Table 6.26: </span>SS6 split section pace delta — ROV
+<span id="tab:unnamed-chunk-737">Table 6.26: </span>SS6 split section pace delta — ROV
 </caption>
 <thead>
 <tr>
@@ -5469,7 +5593,7 @@ split_N
 <p>Stage report for KAT.</p>
 <table class="table table-condensed">
 <caption>
-<span id="tab:unnamed-chunk-739">Table 6.27: </span>SS6 stage report — KAT
+<span id="tab:unnamed-chunk-741">Table 6.27: </span>SS6 stage report — KAT
 </caption>
 <thead>
 <tr>
@@ -5701,7 +5825,7 @@ ROV
 <p>KAT’s delta at each split compared to other drivers.</p>
 <table class="table table-condensed">
 <caption>
-<span id="tab:unnamed-chunk-742">Table 6.28: </span>SS6 split delta — KAT
+<span id="tab:unnamed-chunk-744">Table 6.28: </span>SS6 split delta — KAT
 </caption>
 <thead>
 <tr>
@@ -5862,14 +5986,14 @@ LOU
 </tbody>
 </table>
 <p>Accumulated stage time deltas at each split:</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-743-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-745-1.png" width="672" /></p>
 </div>
 <div id="within-split-duration-deltas-55" class="section level3" number="6.7.2">
 <h3><span class="header-section-number">6.7.2</span> Within-Split Duration Deltas</h3>
 <p>KAT’s delta in time to complete each split section compared to other drivers:</p>
 <table class="table table-condensed">
 <caption>
-<span id="tab:unnamed-chunk-744">Table 6.29: </span>SS6 split section delta — KAT
+<span id="tab:unnamed-chunk-746">Table 6.29: </span>SS6 split section delta — KAT
 </caption>
 <thead>
 <tr>
@@ -6034,7 +6158,7 @@ LOU
 <h3><span class="header-section-number">6.7.3</span> Within-Split Pace Deltas</h3>
 <table class="table table-condensed">
 <caption>
-<span id="tab:unnamed-chunk-745">Table 6.30: </span>SS6 split section pace delta — KAT
+<span id="tab:unnamed-chunk-747">Table 6.30: </span>SS6 split section pace delta — KAT
 </caption>
 <thead>
 <tr>
@@ -6201,7 +6325,7 @@ LOU
 <p>Stage report for GRE.</p>
 <table class="table table-condensed">
 <caption>
-<span id="tab:unnamed-chunk-749">Table 6.31: </span>SS6 stage report — GRE
+<span id="tab:unnamed-chunk-751">Table 6.31: </span>SS6 stage report — GRE
 </caption>
 <thead>
 <tr>
@@ -6433,7 +6557,7 @@ ROV
 <p>GRE’s delta at each split compared to other drivers.</p>
 <table class="table table-condensed">
 <caption>
-<span id="tab:unnamed-chunk-752">Table 6.32: </span>SS6 split delta — GRE
+<span id="tab:unnamed-chunk-754">Table 6.32: </span>SS6 split delta — GRE
 </caption>
 <thead>
 <tr>
@@ -6594,14 +6718,14 @@ LOU
 </tbody>
 </table>
 <p>Accumulated stage time deltas at each split:</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-753-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-755-1.png" width="672" /></p>
 </div>
 <div id="within-split-duration-deltas-56" class="section level3" number="6.8.2">
 <h3><span class="header-section-number">6.8.2</span> Within-Split Duration Deltas</h3>
 <p>GRE’s delta in time to complete each split section compared to other drivers:</p>
 <table class="table table-condensed">
 <caption>
-<span id="tab:unnamed-chunk-754">Table 6.33: </span>SS6 split section delta — GRE
+<span id="tab:unnamed-chunk-756">Table 6.33: </span>SS6 split section delta — GRE
 </caption>
 <thead>
 <tr>
@@ -6766,7 +6890,7 @@ LOU
 <h3><span class="header-section-number">6.8.3</span> Within-Split Pace Deltas</h3>
 <table class="table table-condensed">
 <caption>
-<span id="tab:unnamed-chunk-755">Table 6.34: </span>SS6 split section pace delta — GRE
+<span id="tab:unnamed-chunk-757">Table 6.34: </span>SS6 split section pace delta — GRE
 </caption>
 <thead>
 <tr>
@@ -6933,7 +7057,7 @@ LOU
 <p>Stage report for SOR.</p>
 <table class="table table-condensed">
 <caption>
-<span id="tab:unnamed-chunk-759">Table 6.35: </span>SS6 stage report — SOR
+<span id="tab:unnamed-chunk-761">Table 6.35: </span>SS6 stage report — SOR
 </caption>
 <thead>
 <tr>
@@ -7165,7 +7289,7 @@ ROV
 <p>SOR’s delta at each split compared to other drivers.</p>
 <table class="table table-condensed">
 <caption>
-<span id="tab:unnamed-chunk-762">Table 6.36: </span>SS6 split delta — SOR
+<span id="tab:unnamed-chunk-764">Table 6.36: </span>SS6 split delta — SOR
 </caption>
 <thead>
 <tr>
@@ -7326,14 +7450,14 @@ LOU
 </tbody>
 </table>
 <p>Accumulated stage time deltas at each split:</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-763-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-765-1.png" width="672" /></p>
 </div>
 <div id="within-split-duration-deltas-57" class="section level3" number="6.9.2">
 <h3><span class="header-section-number">6.9.2</span> Within-Split Duration Deltas</h3>
 <p>SOR’s delta in time to complete each split section compared to other drivers:</p>
 <table class="table table-condensed">
 <caption>
-<span id="tab:unnamed-chunk-764">Table 6.37: </span>SS6 split section delta — SOR
+<span id="tab:unnamed-chunk-766">Table 6.37: </span>SS6 split section delta — SOR
 </caption>
 <thead>
 <tr>
@@ -7498,7 +7622,7 @@ LOU
 <h3><span class="header-section-number">6.9.3</span> Within-Split Pace Deltas</h3>
 <table class="table table-condensed">
 <caption>
-<span id="tab:unnamed-chunk-765">Table 6.38: </span>SS6 split section pace delta — SOR
+<span id="tab:unnamed-chunk-767">Table 6.38: </span>SS6 split section pace delta — SOR
 </caption>
 <thead>
 <tr>
@@ -7669,7 +7793,7 @@ LOU
 <p>Stage report for SUN.</p>
 <table class="table table-condensed">
 <caption>
-<span id="tab:unnamed-chunk-772">Table 6.39: </span>SS6 stage report — SUN
+<span id="tab:unnamed-chunk-774">Table 6.39: </span>SS6 stage report — SUN
 </caption>
 <thead>
 <tr>
@@ -7901,7 +8025,7 @@ ROV
 <p>SUN’s delta at each split compared to other drivers.</p>
 <table class="table table-condensed">
 <caption>
-<span id="tab:unnamed-chunk-775">Table 6.40: </span>SS6 split delta — SUN
+<span id="tab:unnamed-chunk-777">Table 6.40: </span>SS6 split delta — SUN
 </caption>
 <thead>
 <tr>
@@ -7928,14 +8052,14 @@ split_N
 </tbody>
 </table>
 <p>Accumulated stage time deltas at each split:</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-776-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-778-1.png" width="672" /></p>
 </div>
 <div id="within-split-duration-deltas-58" class="section level3" number="6.11.2">
 <h3><span class="header-section-number">6.11.2</span> Within-Split Duration Deltas</h3>
 <p>SUN’s delta in time to complete each split section compared to other drivers:</p>
 <table class="table table-condensed">
 <caption>
-<span id="tab:unnamed-chunk-777">Table 6.41: </span>SS6 split section delta — SUN
+<span id="tab:unnamed-chunk-779">Table 6.41: </span>SS6 split section delta — SUN
 </caption>
 <thead>
 <tr>
@@ -7966,7 +8090,7 @@ split_N
 <h3><span class="header-section-number">6.11.3</span> Within-Split Pace Deltas</h3>
 <table class="table table-condensed">
 <caption>
-<span id="tab:unnamed-chunk-778">Table 6.42: </span>SS6 split section pace delta — SUN
+<span id="tab:unnamed-chunk-780">Table 6.42: </span>SS6 split section pace delta — SUN
 </caption>
 <thead>
 <tr>
@@ -7999,7 +8123,7 @@ split_N
 <p>Stage report for LOU.</p>
 <table class="table table-condensed">
 <caption>
-<span id="tab:unnamed-chunk-782">Table 6.43: </span>SS6 stage report — LOU
+<span id="tab:unnamed-chunk-784">Table 6.43: </span>SS6 stage report — LOU
 </caption>
 <thead>
 <tr>
@@ -8231,7 +8355,7 @@ ROV
 <p>LOU’s delta at each split compared to other drivers.</p>
 <table class="table table-condensed">
 <caption>
-<span id="tab:unnamed-chunk-785">Table 6.44: </span>SS6 split delta — LOU
+<span id="tab:unnamed-chunk-787">Table 6.44: </span>SS6 split delta — LOU
 </caption>
 <thead>
 <tr>
@@ -8392,14 +8516,14 @@ LOU
 </tbody>
 </table>
 <p>Accumulated stage time deltas at each split:</p>
-<p><img src="_main_files/figure-html/unnamed-chunk-786-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-788-1.png" width="672" /></p>
 </div>
 <div id="within-split-duration-deltas-59" class="section level3" number="6.12.2">
 <h3><span class="header-section-number">6.12.2</span> Within-Split Duration Deltas</h3>
 <p>LOU’s delta in time to complete each split section compared to other drivers:</p>
 <table class="table table-condensed">
 <caption>
-<span id="tab:unnamed-chunk-787">Table 6.45: </span>SS6 split section delta — LOU
+<span id="tab:unnamed-chunk-789">Table 6.45: </span>SS6 split section delta — LOU
 </caption>
 <thead>
 <tr>
@@ -8564,7 +8688,7 @@ LOU
 <h3><span class="header-section-number">6.12.3</span> Within-Split Pace Deltas</h3>
 <table class="table table-condensed">
 <caption>
-<span id="tab:unnamed-chunk-788">Table 6.46: </span>SS6 split section pace delta — LOU
+<span id="tab:unnamed-chunk-790">Table 6.46: </span>SS6 split section pace delta — LOU
 </caption>
 <thead>
 <tr>
