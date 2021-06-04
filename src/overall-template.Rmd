@@ -148,10 +148,10 @@ g = multi_overall_wide_gap_top10 %>%
                            code='code', yflip=TRUE)
 
 g + labs(title = paste0("Off-the-pace chart for overall leader"),
-  subtitle = "Time gained / lost over stages",
+  subtitle = paste0("Time gained / lost over stages, ", rally_name),
   x="Stage",
   y="Time delta (s)",
-  caption = "Created by: RallyDataJunkie" # eg WRC Rally
+  caption = "Created by: RallyDataJunkie.com" # eg WRC Rally
 
 ) 
 ```
@@ -355,7 +355,7 @@ pace_stage = pace_wide_rebased %>%
 ```{r warning=FALSE}
 cum_dist = max(pace_stage$cum_dist)
 g_pm = pace_map(pace_stage, label_size=2,
-                pace_label_offset=-0.04) + xlab("Accumulated distance (km)") + ylim(1.5, -1.5)
+                pace_label_offset=-0.04) + ylim(1.5, -1.5)
 
 # Add banner - TO DO  - this generates warnings... Need to tidy up
 g_pm + geom_rect(data=pace_stage[pace_stage$code_driver==overall_lead_code,],
@@ -368,7 +368,14 @@ g_pm + geom_rect(data=pace_stage[pace_stage$code_driver==overall_lead_code,],
     geom_segment(data=pace_stage[pace_stage$code_driver==overall_lead_code,],
                  aes(x=cum_dist, xend=cum_dist,
                     y=-0.8, yend=-1.0), color='yellow') +
-    theme(legend.position="none")
+    theme(legend.position="none") + 
+  labs(title = paste0("Pace chart across stages" ),
+  subtitle = paste0("Rebased relative to overall leader (",overall_lead_code,"), ", rally_name),
+  x="Accumulated stage distance (km)",
+  y="Pace delta (s/km)",
+  caption = "Created by: RallyDataJunkie.com"
+
+) 
 ```
 
 ## Rally Sparkline Summary
@@ -386,6 +393,8 @@ multi_overall_wide_gap_top10['code'] %>%
          "Stage Pos"= stage_poschart, "Stage Gap"=gap_to_stagewinner_bar,
          "Overall Pos Change"=pos_change_bar) %>%
   spark_df()
+
+#TO DO - need to be able to pass in a caption to spark_df
 ```
 
 

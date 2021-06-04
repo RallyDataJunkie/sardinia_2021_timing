@@ -20,6 +20,8 @@ cat("Starting build", file=logFile, sep='\n')
 s = get_active_season()
 eventId = get_eventId_from_name(s, 'italia')
 
+rally_name = paste0(s[s$id==eventId,'name'], ", 2021")
+
 itinerary = get_itinerary(eventId)
 sections = get_sections(itinerary)
 stages = get_stages(sections) #status and code are useful...
@@ -90,7 +92,7 @@ src = knit_expand("overall-template.Rmd")
 
 *Forthcoming... summary reports for each loop.*
 
-```{r}
+```{r echo=FALSE}
 #Folded text example: https://stackoverflow.com/a/53812694/454773
 ```
 <style>

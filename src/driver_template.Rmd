@@ -2,6 +2,7 @@
 cat(paste("Enter driver_template", driverEntryId),
     file=logFile, sep='\n')
 ```
+
 ### Rebased Split Times
 
 `r driverCode`'s delta at each split compared to other drivers.
@@ -37,6 +38,8 @@ wide_splits_rebased %>%
                  entryId=FALSE), caption=caption )
 #stop("TO HERE")
 ```
+
+### Off-the-Pace Chart
 
 Accumulated stage time deltas at each split:
 

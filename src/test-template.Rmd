@@ -158,11 +158,11 @@ kable(section_pace_wide %>% mutate_if(is.numeric, round, digits = 2) )
 Pace relative to the stage winner.
 
 ```{r}
-example_driver = section_pace_wide[1,]$code
+stage_winner_code = section_pace_wide[1,]$code
 full_split_distances_df = full_split_distances_df %>% 
                             mutate(start_dist =lag(distance, default=0))
 
-section_pace_wide_rebased = rebase(section_pace_wide, example_driver,
+section_pace_wide_rebased = rebase(section_pace_wide, stage_winner_code,
                                    split_names, id_col='code')
 
 
@@ -177,7 +177,11 @@ section_pace_long_rebased = section_pace_wide_rebased %>%
 section_pace_long_rebased %>%
     pace_map( xstart='start_dist', id_col='code',
          xend='distance', lines=FALSE, label_dodge=2,
-         label_size=2) + xlab("Accumulated stagedistance (km)") + ylim(1.5, -1.5)
+         label_size=2) + xlab("Accumulated stagedistance (km)") + ylim(1.5, -1.5) + labs(title = paste0("Pace chart over splits, ", stage_code),
+  subtitle = paste0("Rebased relative to stage winner (",stage_winner_code,"), ", rally_name),
+  x="Distance into stage (km)",
+  y="Pace delta (s/km)",
+  caption = "Created by: RallyDataJunkie.com" ) 
                 
 ```
 
@@ -309,11 +313,16 @@ section_pace_long = section_pace_wide %>%
                           by='splitname')
 
 # TO DO start_dist as a lag...
-# TO DO - the pace limit shoul be better set?
+# TO DO - the pace limit should be better set?
 #ggplot(section_pace_long[section_pace_long$pace<40,],
 ggplot(section_pace_long,
        aes(x=distance, y=pace)) +
-    geom_boxplot(aes(group=distance)) +theme_bw() +ggtitle(paste0(stage_code, ": pace on each split,"))
+    geom_boxplot(aes(group=distance)) +theme_bw() +
+labs(title = paste0(stage_code, ": pace on each split"),
+  subtitle = paste0("Boxplot depicting median and inter-quartile range, ", rally_name),
+  x="Split distance into stage (km)",
+  y="Pace (s/km)",
+  caption = "Created by: RallyDataJunkie.com" )
 ```
 
 ```{r}
