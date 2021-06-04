@@ -31,10 +31,10 @@ pace_map = function(pace_long, limits=NULL,
                     labels=TRUE, drivers=NULL, lines=TRUE,
                     xstart='start_dist', xend='cum_dist',
                     pace='pace', typ='bar', pace_label_offset=0.03,
-                    label_dodge = 15,
-                    id_col='code_driver'){
+                    label_dodge = 15, label_size=1,
+                    id_col='code_driver', yflip=FALSE){
   
-  # There are downstream dependiencies with colnmaes baked in atm...
+  # There are downstream dependiencies with colnames baked in atm...
   pace_long$start_dist = pace_long[[xstart]]
   pace_long$cum_dist = pace_long[[xend]]
   pace_long$pace = pace_long[[pace]]
@@ -56,7 +56,8 @@ pace_map = function(pace_long, limits=NULL,
   if (labels){
     g0 = g0 + geom_text(aes(x= (start_dist+cum_dist)/2,
                             y=pace+pace_label_offset),
-                        position = position_dodge(label_dodge), size=1)
+                        position = position_dodge(label_dodge),
+                        size=label_size)
   }
   if (!is.null(drivers) ){
     if (typ=='bar'){
@@ -72,6 +73,9 @@ pace_map = function(pace_long, limits=NULL,
   }
   
   g0 = g0 + coord_cartesian(ylim=limits)
+  
+  if (yflip)
+    g0 = g0 + scale_y_reverse()
   
   g0 + theme_classic() + theme(legend.position="none")
 }

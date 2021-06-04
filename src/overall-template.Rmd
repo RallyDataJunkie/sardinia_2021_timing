@@ -13,8 +13,6 @@ stage_list_codes = stages[stages$code %in% stage_codes, 'stageId']
 ```{r warning=FALSE, include=FALSE, echo=FALSE, message=FALSE}
 # TO DO - reorder the order of display of tables
 
-# TO DO - stage pace maps
-
 # TO DO  - gap to leader at end of stage
 
 
@@ -333,7 +331,7 @@ pace_wide = get_multi_stage_generic_wide(multi_stage_pace,
                                          group_key=c('code_driver'),
                                          spread_key='code')
 
-overall_lead_code = multi_stage_wide_pos[1, 'code']
+overall_lead_code = multi_overall_wide_pos_[1, 'code']
 
 pace_wide_rebased = rebase(pace_wide, overall_lead_code, stage_codes,
                            id_col='code_driver')
@@ -343,9 +341,26 @@ pace_stage = pace_wide_rebased %>%
                        stage_range['start']:stage_range['end']) %>%
                 merge(stages[,c('code', 'start_dist', 'cum_dist')],
                           by='code')
-pace_map(pace_stage) + ylim(-2, 2) + xlab("Accumulated distance (km)")
 ```
 
+```{r warning=FALSE}
+cum_dist = max(pace_stage$cum_dist)
+g_pm = pace_map(pace_stage, label_size=2,
+                pace_label_offset=-0.04) + xlab("Accumulated distance (km)") + ylim(1.5, -1.5)
+
+# Add banner - TO DO  - this generates warnings... Need to tidy up
+g_pm + geom_rect(data=pace_stage[pace_stage$code_driver==overall_lead_code,],
+              aes(xmin=0, xmax=max(cum_dist),
+                  ymin = -0.8,  ymax = -1.0,
+                  alpha=0), fill = 'black') +
+    geom_text(data=pace_stage[pace_stage$code_driver==overall_lead_code,],
+              aes(x=(cum_dist + start_dist)/2, label=code),
+              y=0.9, color='yellow', size=3) +
+    geom_segment(data=pace_stage[pace_stage$code_driver==overall_lead_code,],
+                 aes(x=cum_dist, xend=cum_dist,
+                    y=-0.8, yend=-1.0), color='yellow') +
+    theme(legend.position="none")
+```
 
 ## Rally Sparkline Summary
 
