@@ -53,7 +53,7 @@ class_WRC3 = cars %>% filter(eligibility=='WRC3') %>% select(entryId)
 
 #wrc = cars %>% filter(entryId<=22519)
 
-target_class = class_WRC
+target_class = class_WRC2
 use_group_rank = TRUE
 
 wrc = cars %>% filter(entryId %in% target_class$entryId)
@@ -70,7 +70,7 @@ cat("Done setup", file=logFile, sep='\n')
 
 ```{r  message=FALSE, echo=FALSE, error=FALSE, warning=FALSE, results='asis'}
 #stage_list=list("SS1", "SS2", "SS3", "SS4", "SS5", "SS6", "SS7", "SS8", "SS9", "SS10", "SS11", "SS12", "SS13", "SS14", "SS15", "SS16", "SS17", "SS18", "SS19", "SS20")
-stage_list=list("SS1", "SS2", "SS3")
+stage_list=list("SS1", "SS2", "SS3", "SS4", "SS5")
 omit_stage_splits = c()
 
 cutoff_delta = -1 #1500000 # if negative ignore

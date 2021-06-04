@@ -5,12 +5,15 @@ source('overall_sketches.R')
 source('spark_sketches.R')
 ```
 
+```{r}
+stage_codes =  unlist(stage_list)
+stage_list_codes = stages[stages$code %in% stage_codes, 'stageId']
+```
+
 ```{r warning=FALSE, include=FALSE, echo=FALSE, message=FALSE}
 # TO DO - reorder the order of display of tables
 
-# TO DO - stage wins table
-
-# TO DO - battle charts
+# TO DO - stage pace maps
 
 # TO DO  - gap to leader at end of stage
 
@@ -18,8 +21,6 @@ source('spark_sketches.R')
 # TO DO - we need to make sure we are working with the same cars
 # For example, WRC cars (cars in group), top 10 overall etc
 # The top 10 by stage may not be the same as top 10 overall
-stage_codes =  unlist(stage_list)
-stage_list_codes = stages[stages$code %in% unlist(stage_list), 'stageId']
 
 
 multi_overall_results = get_multi_overall(stage_list_codes) %>%
@@ -115,6 +116,18 @@ kable(out_table, format = "html") %>%
   kable_styling() %>%
   kableExtra::scroll_box(width = "100%")
 ```
+
+## Stage Wins Summary
+
+Summary of stage wins.
+
+```{r warning=FALSE, message=FALSE}
+# Count number of stage wins by driver
+out_table %>% 
+  pivot_longer(!code, names_to = "Stage", values_to = "position") %>% filter(position==1) %>%
+group_by(code) %>%  summarise(wins = paste(Stage, sep=''), wincount=n()) %>% arrange(desc(wincount)) %>% formattable(align='c')
+```
+
 
 ## Gap to Overall Leader at Each Stage End
 
@@ -299,7 +312,15 @@ pos_gain_sparkline_top10 <- pos_gain_long_top10 %>%
 multi_overall_wide_pos_$overall_poschart = gt_overall_pos_plots
 ```
 
-### Rally Sparkline Summary
+
+## Stage Pace
+
+Stage pace charts.
+
+*Coming soon...*
+
+
+## Rally Sparkline Summary
 
 Simple summary charts of rally progress for each driver, ordered by latest overall ranking:
 
