@@ -115,19 +115,6 @@ kable(out_table, format = "html") %>%
   kableExtra::scroll_box(width = "100%")
 ```
 
-## Stage Wins Summary
-
-Summary of stage wins.
-
-```{r warning=FALSE, message=FALSE}
-# Count number of stage wins by driver
-out_table %>% 
-  pivot_longer(!code, names_to = "Stage", values_to = "position") %>% filter(position==1) %>% select(c('code', 'Stage')) %>%
-group_by(code) %>%  summarise(wins = toString(Stage), wincount=n()) %>% arrange(desc(wincount)) %>% formattable(align='c')
-
-```
-
-
 ## Gap to Overall Leader at Each Stage End
 
 The gap to current overall leader, with table ordered by overall rally position at end of last recorded stage:
@@ -175,7 +162,6 @@ g + labs(title = paste0("Off-the-pace chart for overall leader"),
 ```
 
 
-
 ## Stage Position History
 
 *Ranked according to position on last recorded stage __not__ overall position. The advantage of this ordering is that it helps register "surprise" arising from a perhaps unexpected stage winner. The chart gives the summary of stage rank evolution.*
@@ -193,11 +179,9 @@ multi_stage_long_pos = multi_stage_wide_pos %>%
 #formattable(multi_stage_wide_pos, align='c',
 #                  list(area(col = stage_codes) ~ highlight_first())) 
 
-
-kable(multi_stage_wide_pos, format = "html") %>%
-  kable_styling() %>%
-  kableExtra::scroll_box(width = "100%")
 ```
+
+
 ```{r message=FALSE}
 # For some reason, the overall gap sparkline is relative to ogier
 # Should be relatve to current overall leader
@@ -311,6 +295,25 @@ pos_gain_sparkline_top10 <- pos_gain_long_top10 %>%
 multi_overall_wide_pos_$overall_poschart = gt_overall_pos_plots
 ```
 
+```{r}
+# Order according to overall
+overall_order = multi_overall_wide_pos_$code
+kable(multi_stage_wide_pos %>% dplyr::arrange(factor(code, levels = overall_order)), format = "html") %>%
+  kable_styling() %>%
+  kableExtra::scroll_box(width = "100%")
+```
+
+## Stage Wins Summary
+
+Summary of stage wins.
+
+```{r warning=FALSE, message=FALSE}
+# Count number of stage wins by driver
+multi_stage_wide_pos %>% 
+  pivot_longer(!code, names_to = "Stage", values_to = "position") %>% filter(position==1) %>% select(c('code', 'Stage')) %>%
+group_by(code) %>%  summarise(wins = toString(Stage), wincount=n()) %>% arrange(desc(wincount)) %>% formattable(align='c')
+
+```
 
 ## Stage Pace
 

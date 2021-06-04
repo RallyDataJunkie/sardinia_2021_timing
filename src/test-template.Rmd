@@ -153,6 +153,34 @@ Pace is measured in seconds per kilometer, which is to say, how long it takes to
 kable(section_pace_wide %>% mutate_if(is.numeric, round, digits = 2) )
 ```
 
+### Pace Chart
+
+Pace relative to the stage winner.
+
+```{r}
+example_driver = section_pace_wide[1,]$code
+full_split_distances_df = full_split_distances_df %>% 
+                            mutate(start_dist =lag(distance, default=0))
+
+section_pace_wide_rebased = rebase(section_pace_wide, example_driver,
+                                   split_names, id_col='code')
+
+
+section_pace_long_rebased = section_pace_wide_rebased %>% 
+                  head(10) %>%
+                gather(splitname, pace,
+                       as.character(split_names)) %>%
+                merge(full_split_distances_df[,c('splitname',
+                                          'start_dist', 'distance')],
+                      by='splitname')
+
+section_pace_long_rebased %>%
+    pace_map( xstart='start_dist', id_col='code',
+         xend='distance', lines=FALSE, label_dodge=2,
+         label_size=2) + xlab("Accumulated stagedistance (km)") + ylim(1.5, -1.5)
+                
+```
+
 ### Ultimate Stage Comparisons
 
 Split time comparisons relative to various ultimage stage time calculations.
