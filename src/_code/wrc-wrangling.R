@@ -3,14 +3,14 @@ get_multi_stage_pace = function(multi_stage_times, cars) {
   multi_stage_times %>%
     merge(stages[,c('stageId' ,'distance',
                     'number', 'code')],
-          by='stageId') %>%
+          by='stageId', all.x = TRUE) %>%
     mutate(elapsedDurationS = elapsedDurationMs / 1000,
            pace = elapsedDurationS / distance) %>%
     merge(cars[,c('entryId','drivername',
                   'code', 'groupname')],
           by='entryId',
           suffixes=c('','_driver')) %>%
-    filter(groupname=='WRC') %>%
+    #filter(groupname=='WRC') %>%
     select(c('stageId', 'number', 'code_driver',
              'elapsedDurationS', 'pace', 'code'))  %>%
     arrange(number, elapsedDurationS)

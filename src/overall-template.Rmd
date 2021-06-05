@@ -10,7 +10,7 @@ stage_codes =  unlist(stage_list)
 stage_list_codes = stages[stages$code %in% stage_codes, 'stageId']
 ```
 
-```{r warning=FALSE, include=FALSE, echo=FALSE, message=FALSE}
+```{r echo=FALSE, message=FALSE, warning=FALSE, include=FALSE}
 # TO DO - reorder the order of display of tables
 
 # TO DO  - gap to leader at end of stage
@@ -332,7 +332,8 @@ stage_range = c(start=stage_codes[1],
 
 multi_stage_pace = get_multi_stage_pace(multi_stage_times, cars)
 
-
+# TO DO - we need to rebase to group leader
+# TO DO get_multi_stage_generic_wide() should fail nice w/ empty df
 pace_wide = get_multi_stage_generic_wide(multi_stage_pace,
                                          stage_codes, 'pace',
                                          # Unique group keys required

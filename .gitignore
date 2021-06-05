@@ -5,3 +5,4 @@
 .DS_Store
 src/build.log
 docs2/
+src/_bookdown_files
