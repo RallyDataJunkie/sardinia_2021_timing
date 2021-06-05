@@ -13,9 +13,24 @@ params:
   doc_title: "Stage Results"
 ---
 
+```{r warning=FALSE, include=FALSE, echo=FALSE, message=FALSE, output=FALSE}
+library(knitr)
+library(kableExtra)
+library(formattable)
+
+source('_code/wrc-api.R')
+```
+
+```{r}
+s = get_active_season()
+eventId = get_eventId_from_name(s, 'italia')
+
+rally_name = paste0(s[s$id==eventId,'name'], ", 2021")
+```
+
 # Preface {-}
 
-Automatically generated stage timing and results for stages on *WRC Rally Italia Sardegna, 2021*.
+Automatically generated stage timing and results for stages on *`r rally_name`, 2021*.
 
 Based on analysis of timing and results data downloaded from the WRC website.
 
