@@ -7,6 +7,9 @@ library(knitr)
 source('_code/wrc-api.R')
 ```
 
+
+
+
 ```{r}
 
 map_stage_codes_col = function(df, stages){
@@ -98,7 +101,7 @@ if _main_host is not None:
 with ruleset('rule_multi_results'):
     
     #Display something about the crew in first place
-    @when_all(m.position == 1)
+    @when_all(m.position < 2)
     def whos_in_first(c):
         """Generate a sentence to report on the first placed vehicle."""
         #We can add additional state, accessible from other rules
@@ -114,25 +117,7 @@ with ruleset('rule_multi_results'):
         txts.append('we got another first...')
         
     #We can be a bit more creative in the other results
-    
-    @when_all(m.position<2)
-    def whos_where_first(c):
-        """Generate a sentence to describe the position of each other placed vehicle."""
-        
-        #Use the inflect package to natural language textify position numbers...
-        nth = p.number_to_words(p.ordinal(int(c.m.position)))
-        
-        #Use various probabalistic text generators to make a comment for each other result
-        first_opts = [c.s.first_code, 'the stage winner']
-        #if c.m.Brand==c.s.first_brand:
-        #    first_opts.append(f'the first placed {c.m.Brand}')
-        t = pickone_equally([f'with a time of {c.m.totalTime}',
-                             "{} behind {}".format(str(c.m.diffFirstS), pickone_equally(first_opts))],
-                           prefix=', ')
-        
-        #And add even more variation possibilities into the returned generated sentence
-        txts.append(f'{c.m.code} was FIRST in {nth}{sometimes(" position")}{t}.')
-@when_all(m.position>1)
+    @when_all(m.position>1)
     def whos_where(c):
         """Generate a sentence to describe the position of each other placed vehicle."""
         
@@ -149,8 +134,18 @@ with ruleset('rule_multi_results'):
         
         #And add even more variation possibilities into the returned generated sentence
         txts.append(f'{c.m.code} was in {nth}{sometimes(" position")}{t}.')
+
+
+
 ```
 
+
+```{python}
+txts=[]
+pd_df.head().apply(rulesbyrow, ruleset='rule_multi_results', axis=1)
+
+print('\n\n'.join(txts))
+```
 
 
 ```{python}
