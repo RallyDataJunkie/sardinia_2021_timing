@@ -18,7 +18,7 @@ map_stage_codes_col = function(df, stages){
     # Move last column to first
     select('stagecode', everything())
 }
-rule_multi_results = multi_overall_results %>% map_driver_names(cars) %>% map_stage_codes_col(stages)
+rule_multi_results = multi_overall_results %>% map_driver_names(cars) %>% map_stage_codes_col(stages) %>% arrange(stagecode, position)
 
 rule_multi_results
 ```
@@ -33,46 +33,8 @@ import pandas as pd
 import inflect
 
 p = inflect.engine()
-
-intervals = (
-    ('weeks', 604800),  # 60 * 60 * 24 * 7
-    ('days', 86400),    # 60 * 60 * 24
-    ('hours', 3600),    # 60 * 60
-    ('minutes', 60),
-    ('seconds', 1),
-    )
-    
-def display_time(t, granularity=3,
-                 sep=',', andword='and',
-                 units = 'seconds', intify=True):
-    """Take a time in seconds and return a sensible
-        natural language interpretation of it."""
-    def nl_join(l):
-        if len(l)>2:
-            return ', '.join(f'{l[:-1]} {andword} {str(l[-1])}')
-        elif len(l)==2:
-            return f' {andword} '.join(l)
-        return l[0]
-    
-    result = []
-
-    if intify:
-        t=int(t)
-
-    #Need better handle for arbitrary time strings
-    #Perhaps parse into a timedelta object
-    # and then generate NL string from that?
-    if units=='seconds':
-        for name, count in intervals:
-            value = t // count
-            if value:
-                t -= value * count
-                if value == 1:
-                    name = name.rstrip('s')
-                result.append("{} {}".format(value, name))
-
-        return nl_join(result[:granularity])
 ```
+
 
 ```{python}
 import random
@@ -144,7 +106,7 @@ with ruleset('rule_multi_results'):
         c.s.first_code = code
         
         #Python f-strings make it easy to generate text sentences that include data elements
-        txts.append(f'{c.m.code} was in first with a time of {c.m.totalTime}.')
+        txts.append(f'{c.m.code} was in first with a time of .')
     
     #This just checks whether we get multiple rule fires...
     @when_all(m.position == 1)
@@ -152,7 +114,25 @@ with ruleset('rule_multi_results'):
         txts.append('we got another first...')
         
     #We can be a bit more creative in the other results
-    @when_all(m.position>1)
+    
+    @when_all(m.position<2)
+    def whos_where_first(c):
+        """Generate a sentence to describe the position of each other placed vehicle."""
+        
+        #Use the inflect package to natural language textify position numbers...
+        nth = p.number_to_words(p.ordinal(int(c.m.position)))
+        
+        #Use various probabalistic text generators to make a comment for each other result
+        first_opts = [c.s.first_code, 'the stage winner']
+        #if c.m.Brand==c.s.first_brand:
+        #    first_opts.append(f'the first placed {c.m.Brand}')
+        t = pickone_equally([f'with a time of {c.m.totalTime}',
+                             "{} behind {}".format(str(c.m.diffFirstS), pickone_equally(first_opts))],
+                           prefix=', ')
+        
+        #And add even more variation possibilities into the returned generated sentence
+        txts.append(f'{c.m.code} was FIRST in {nth}{sometimes(" position")}{t}.')
+@when_all(m.position>1)
     def whos_where(c):
         """Generate a sentence to describe the position of each other placed vehicle."""
         
@@ -164,19 +144,14 @@ with ruleset('rule_multi_results'):
         #if c.m.Brand==c.s.first_brand:
         #    first_opts.append(f'the first placed {c.m.Brand}')
         t = pickone_equally([f'with a time of {c.m.totalTime}',
-                             f'sometimes(f"{c.m.diffFirstS} behind {pickone_equally(first_opts)}")'],
+                             "{} behind {}".format(str(c.m.diffFirstS), pickone_equally(first_opts))],
                            prefix=', ')
         
         #And add even more variation possibilities into the returned generated sentence
         txts.append(f'{c.m.code} was in {nth}{sometimes(" position")}{t}.')
 ```
 
-```{python}
-txts=[]
-tmp = json.loads(pd_df.iloc[0].to_json())
-post('rule_multi_results',tmp)
-''.join(txts)
-```
+
 
 ```{python}
 txts=[]
