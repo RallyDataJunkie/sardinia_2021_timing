@@ -152,7 +152,6 @@ g + labs(title = paste0("Off-the-pace chart for overall leader"),
   x="Stage",
   y="Time delta (s)",
   caption = "Created by: RallyDataJunkie.com" # eg WRC Rally
-
 ) 
 ```
 

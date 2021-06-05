@@ -164,7 +164,7 @@ with ruleset('rule_multi_results'):
         #if c.m.Brand==c.s.first_brand:
         #    first_opts.append(f'the first placed {c.m.Brand}')
         t = pickone_equally([f'with a time of {c.m.totalTime}',
-                             f'{sometimes(f"{display_time(c.m.diffFirstS)} behind {pickone_equally(first_opts)}")}'],
+                             f'sometimes(f"{c.m.diffFirstS} behind {pickone_equally(first_opts)}")'],
                            prefix=', ')
         
         #And add even more variation possibilities into the returned generated sentence
