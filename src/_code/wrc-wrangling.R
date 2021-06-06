@@ -104,6 +104,14 @@ map_split_codes = function(df, splits_list) {
                warn_missing = FALSE)
 }
 
+## ---- map controls ----
+map_controlId = function(df, controls){
+  df %>%
+    merge(controls[,c('controlId','type', 'code', 'location')],
+          by='controlId', suffixes=c('', '2'))  %>%
+    rename(control = code2)
+}
+
 ## ---- relabel_times_df --------
 relabel_times_df = function(df, stage_list, cars) {
   df %>%  

@@ -157,6 +157,18 @@ g + labs(title = paste0("Off-the-pace chart for overall leader"),
 
 ## Gap to Overall Leader at Each Stage End
 
+The gap to the overall leader at the end of each stage, with table ordered by overall rally position at end of last recorded stage:
+
+```{r}
+#kable(multi_overall_wide_gap_top10)
+# Add min value abs to each column
+kable(multi_overall_wide_gap_top10 %>% mutate_at(2:ncol(multi_overall_wide_gap_top10), list(~ . + abs(min(., na.rm=TRUE)))), format = "html") %>%
+  kable_styling() %>%
+  kableExtra::scroll_box(width = "100%")
+```
+
+## Gap to Current Overall Leader at Each Stage End
+
 The gap to current overall leader, with table ordered by overall rally position at end of last recorded stage:
 
 ```{r}
@@ -166,6 +178,41 @@ kable(multi_overall_wide_gap_top10, format = "html") %>%
   kableExtra::scroll_box(width = "100%")
 ```
 
+## Retirements
+
+```{r}
+controls = get_controls(sections)
+
+map_controlId = function(df, controls){
+  df %>%
+    merge(controls[,c('controlId', 'code', 'location', 'type')],
+          by='controlId', suffixes=c('', '2'))  %>%
+    rename(control = code2)
+}
+
+get_retirements(eventId) %>%
+  filter(entryId %in% wrc_entries)  %>% map_driver_names(cars) %>%
+  map_controlId(controls) %>% 
+  rename(time=retirementDateTime) %>%
+  select(-c(controlId, retirementId, retirementDateTimeLocal)) %>%
+  relocate(reason, .after = last_col()) %>%
+  formattable(caption=paste("Retirmements", rally_name, sep=", "))
+```
+
+## Penalties
+
+```{r}
+get_penalties(eventId) %>%
+  filter(entryId %in% wrc_entries)  %>% map_driver_names(cars) %>%
+  map_controlId(controls) %>%
+  mutate('penaltyDuration (s)' = penaltyDurationMs/1000 ) %>%
+    # Limit columns and set column order
+    select(-c(controlId, penaltyDurationMs, penaltyDurationMs, penaltyId)) %>%
+    # Move last column to first
+    select(code, control, location, type, reason, 'penaltyDuration (s)')  %>%
+  formattable(caption=paste("Penalties", rally_name, sep=", "))
+ # select(code, penaltyDuration, reason)
+```
 
 ## Stage Position History
 
