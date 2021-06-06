@@ -7,7 +7,7 @@ cat(paste("test-template IN: ",stage_code),
 
 Reports on splits
 
-```{r results=FALSE, message=FALSE, warning=FALSE}
+```{r fsd_{{result_group}}_{{stage_code}}, cache=TRUE, results=FALSE, message=FALSE, warning=FALSE}
 #library(formattable)
 
 #stage_code = 'SS6'
@@ -157,7 +157,7 @@ kable(section_pace_wide %>% mutate_if(is.numeric, round, digits = 2) )
 
 Pace relative to the stage winner.
 
-```{r}
+```{r test_pace_chart_{{result_group}}_{{stage_code}}, cache=TRUE}
 stage_winner_code = section_pace_wide[1,]$code
 full_split_distances_df = full_split_distances_df %>% 
                             mutate(start_dist =lag(distance, default=0))
@@ -187,7 +187,7 @@ section_pace_long_rebased %>%
 
 ### Ultimate Stage Comparisons
 
-Split time comparisons relative to various ultimage stage time calculations.
+Split time comparisons relative to various ultimate stage time calculations.
 
 These views provide various ways of comparing the performance of each driver to various ghost drivers:
 
@@ -195,7 +195,7 @@ These views provide various ways of comparing the performance of each driver to 
 - fastest time going from one split to the next (*ultimate sections*): gives an estimate of how quickly each driver completed each split section relative to the quickest time recorded completing that split section (time taken to go from one split point to the next);
 - *accumulated ultimate sections* times: gives and estimate of how quickly the driver is going relative to the fastest possible completion of the stage based on accumulated ultimate split section times.
 
-```{r echo=FALSE, message=FALSE, warning=FALSE}
+```{r test_ults_{{result_group}}_{{stage_code}}, cache=TRUE, echo=FALSE, message=FALSE, warning=FALSE}
 ultimate_splits_long = full_durations_wide %>%
                      pivot_longer(all_of(split_names),
                                   names_to = "splitname",
@@ -253,7 +253,7 @@ ultimate_actual = full_splits_wide %>%
 
 Driver times compared to the first ranked recorded split time at each split:
 
-```{r}
+```{r ult_act_table_{{result_group}}_{{stage_code}}, cache=TRUE}
 caption = paste0(stage_info_$code, ' ultimate split actual deltas')
 ultimate_actual %>%
                   filter_at(vars(starts_with("split_")),
@@ -285,7 +285,7 @@ formattable(align='c',
 
 Actual split times relative to the accumulated ultimate split section times:
 
-```{r}
+```{r test_uas_t_{{result_group}}_{{stage_code}}, cache=TRUE,}
 caption = paste0(stage_info_$code, ' accumulated ultimate section deltas')
 ultimate_accumulated %>%
                   filter_at(vars(starts_with("split_")),
@@ -300,7 +300,7 @@ formattable( align='c',
 
 Distribution of pace values for each split section:
 
-```{r warning=FALSE, error=FALSE, message=FALSE}
+```{r test_split_pace_chart_{{result_group}}_{{stage_code}}, cache=TRUE, warning=FALSE, error=FALSE, message=FALSE}
 full_split_dists = map_df(full_split_distances, ~as.data.frame(.x), .id="splitname") %>% rename(section_distance = .x) %>% 
   mutate(distance = cumsum(section_distance))
 #Pace calculation

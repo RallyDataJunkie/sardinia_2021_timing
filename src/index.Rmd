@@ -8,11 +8,6 @@ site: bookdown::bookdown_site
 date: "Last generated on `r format(Sys.time(), '%d %B, %Y')`"
 always_allow_html: yes
 new_session: no
-
-output:
-  html_document:
-    includes:
-      in_header: header-twitter.html
 params:
   doc_title: "Stage Results"
 ---
