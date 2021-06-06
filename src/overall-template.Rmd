@@ -361,8 +361,9 @@ Summary of stage wins.
 
 ```{r warning=FALSE, message=FALSE}
 # Count number of stage wins by driver
-multi_stage_wide_pos %>% 
-  pivot_longer(!code, names_to = "Stage", values_to = "position") %>% filter(position==1) %>% select(c('code', 'Stage')) %>%
+# If we have a tie then the pos is still ranked so rerank based on delta
+multi_stage_wide_gap %>% 
+  pivot_longer(!code, names_to = "Stage", values_to = "Delta") %>% filter(Delta==0) %>% select(c('code', 'Stage')) %>%
 group_by(code) %>%  summarise(wins = toString(Stage), wincount=n()) %>% arrange(desc(wincount)) %>% formattable(align='c')
 
 ```
@@ -452,6 +453,17 @@ Summary of raw stage times
 ```{r}
 #kable(multi_stage_times_wide)
 kable(multi_stage_times_wide %>% dplyr::arrange(factor(code, levels = overall_order)), format = "html")  %>%
+  kable_styling() %>%
+  kableExtra::scroll_box(width = "100%")
+```
+
+## Stage Time Deltas
+
+Summary of stage time deltas
+
+```{r}
+#kable(multi_stage_times_wide)
+kable(multi_stage_wide_gap %>% dplyr::arrange(factor(code, levels = overall_order)), format = "html")  %>%
   kable_styling() %>%
   kableExtra::scroll_box(width = "100%")
 ```
