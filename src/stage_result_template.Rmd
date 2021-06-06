@@ -17,7 +17,7 @@ top10_display_cols_base = c('position', 'identifier', 'code',
                             'TimeInS', 'gap', 'diff')
 ```
 
-```{r top10-stage_times-{{result_group}}-{{stage_code}}, cache=TRUE}
+```{r top10-stage-times-{{result_group}}-{{stage_code}}, cache=TRUE}
 top10_stage_times = stage_times %>%
                       # Filter required group
                       #filter(entryId %in% wrc_entries) %>%
@@ -131,8 +131,11 @@ if (stage_splits_exist) {
 
   for (driverEntryId in wrc_entries){
     #driverEntryId=22431
-    driverCode = cars[cars$entryId==driverEntryId,'code']
-  
+    driverCode = cars[cars$entryId==driverEntryId, 'code']
+    
+    # Remove accents for use in chunk labels/image names
+    driverCodeClean = stringi::stri_trans_general(driverCode, "Latin-ASCII")
+    
     # This section is broken
     template = "driver_stage_template.Rmd"
     #template="empty_template.Rmd"

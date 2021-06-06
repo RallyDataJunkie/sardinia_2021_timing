@@ -256,7 +256,7 @@ multi_overall_wide_pos_$overall_poschart = gt_overall_pos_plots
 
 
 ```{r warning=FALSE }
-# Stage Pace Calcualtions
+# Stage Pace Calculations
 
 stage_range = c(start=stage_codes[1],
                 end=stage_codes[length(stage_codes)])
@@ -480,7 +480,7 @@ kable(out_table, format = "html") %>%
 
 ## Gap to Current Overall Leader at Each Stage End
 
-The gap to current overall leader, with table ordered by overall rally position at end of last recorded stage:
+The gap to current overall leader, `r overall_lead_code`, with table ordered by overall rally position at end of last recorded stage:
 
 ```{r}
 #kable(multi_overall_wide_gap_top10)

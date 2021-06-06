@@ -43,7 +43,7 @@ full_split_distances_df = full_split_distances %>%
  select(c(rowname, distance)) %>% rename(splitname=rowname)
 ```
 
-```{r echo=FALSE, message=FALSE, warning=FALSE,}
+```{r fsw--{{result_group}}-{{stage_code}}, cache=TRUE, echo=FALSE, message=FALSE, warning=FALSE,}
 full_splits_wide = get_splits_wide(splits, wrc_entries) %>%
                       widen_splits_stage_times(stage_times) %>%
                       filter(entryId %in% wrc_entries) %>%

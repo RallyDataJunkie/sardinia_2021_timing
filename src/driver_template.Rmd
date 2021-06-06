@@ -23,7 +23,7 @@ caption = paste0(stage_info_$code, ' split delta — ', driverCode)
 ```
 
 
-```{r srt-{{result_group}}-{{stage_code}}-{{driverCode}}, cache=TRUE}
+```{r srt-{{result_group}}-{{stage_code}}-{{driverCodeClean}}, cache=TRUE}
 # TO DO - with all_vars(! is.na(.)), if there is an NA we lose the column?
 # CHECK
 wide_splits_rebased = driver_rebased[,c('code',split_names)] %>%
@@ -43,7 +43,7 @@ wide_splits_rebased %>%
 
 Accumulated stage time deltas at each split:
 
-```{r otp-chart-{{result_group}}-{{stage_code}}-{{driverCode}}, cache=TRUE}
+```{r otp-chart-{{result_group}}-{{stage_code}}-{{driverCodeClean}}, cache=TRUE}
 # TO DO
 # the off_the_pace chart, and the simple max assignment, fail??
 long_splits_rebased = wide_splits_rebased %>%
@@ -79,7 +79,7 @@ g + labs(title = paste0("Off-the-pace chart: ",
 
 `r driverCode`'s delta in time to complete each split section compared to other drivers:
 
-```{r isdd-t-{{result_group}}-{{stage_code}}-{{driverCode}}, cache=TRUE}
+```{r isdd-t-{{result_group}}-{{stage_code}}-{{driverCodeClean}}, cache=TRUE}
 # Pass in driverId
 
 driver_rebased = rebase(full_durations_wide, driverCode,
@@ -102,7 +102,7 @@ formattable( align='c',
 
 ### Within-Split Pace Deltas
 
-```{r spd-t-{{result_group}}-{{stage_code}}-{{driverCode}}, cache=TRUE}
+```{r spd-t-{{result_group}}-{{stage_code}}-{{driverCodeClean}}, cache=TRUE}
 driver_rebased = rebase(section_pace_wide, driverCode,
                        split_names, id_col='code') %>%
                   select(code, all_of(split_names)) %>%
