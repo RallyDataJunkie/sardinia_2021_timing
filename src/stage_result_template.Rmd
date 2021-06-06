@@ -17,7 +17,7 @@ top10_display_cols_base = c('position', 'identifier', 'code',
                             'TimeInS', 'gap', 'diff')
 ```
 
-```{r top10_stage_times_{{result_group}}_{{stage_code}}, cache=TRUE}
+```{r top10-stage_times-{{result_group}}-{{stage_code}}, cache=TRUE}
 top10_stage_times = stage_times %>%
                       # Filter required group
                       #filter(entryId %in% wrc_entries) %>%
@@ -53,7 +53,7 @@ if (use_group_rank) {
 }
 ```
 
-```{r group_stage_times_{{result_group}}_{{stage_code}}, cache=TRUE}
+```{r group-stage-times-{{result_group}}-{{stage_code}}, cache=TRUE}
 group_stage_times = stage_times %>%
                       # Filter required group
                       filter(entryId %in% wrc_entries) %>%
@@ -82,7 +82,7 @@ group_stage_times = stage_times %>%
 ```
 
 
-```{r top10_stage_times_table_{{result_group}}_{{stage_code}}, cache=TRUE}
+```{r top10-stage-times-table-{{result_group}}-{{stage_code}}, cache=TRUE}
 stage_cols = c('stageId', 'number', 'name', 'distance', 'code')
 
 stage_info = stages %>%

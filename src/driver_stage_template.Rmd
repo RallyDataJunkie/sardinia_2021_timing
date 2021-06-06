@@ -1,6 +1,6 @@
 ## Driver Report, `r stage_code`  - `r driverCode`
 
-```{r driver_rebased_gap_{{result_group}}_{{stage_code}}_{{driverCode}}, echo=FALSE, message=FALSE, error=FALSE, results='asis', cache=TRUE}
+```{r driver_rebased_gap-{{result_group}}-{{stage_code}}-{{driverCode}}, echo=FALSE, message=FALSE, error=FALSE, results='asis', cache=TRUE}
 #driverCode="KAT"
 driver_rebased_gap =  group_stage_times %>%
                         #filter_at(vars(starts_with("split_")),
@@ -20,7 +20,7 @@ driver_blank = driver_rebased_gap %>% filter(!is.na(Gap)) %>% plyr::empty()
 
 `r ifelse(driver_blank, "No stage", "Stage")` report for `r driverCode`.
 
-```{r driver_rebased_gap_{{result_group}}_{{stage_code}}_{{driverCode}}_table, cache=TRUE}
+```{r driver_rebased_gap-{{result_group}}-{{stage_code}}-{{driverCode}}-table, cache=TRUE}
 if (!driver_blank){
   caption = paste0(stage_info_$code, ' stage report — ', driverCode)
   
