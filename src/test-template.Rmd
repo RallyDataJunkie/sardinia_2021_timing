@@ -177,7 +177,7 @@ section_pace_long_rebased = section_pace_wide_rebased %>%
 section_pace_long_rebased %>%
     pace_map( xstart='start_dist', id_col='code',
          xend='distance', lines=FALSE, label_dodge=2,
-         label_size=2) + xlab("Accumulated stagedistance (km)") + ylim(1.5, -1.5) + labs(title = paste0("Pace chart over splits, ", stage_code),
+         label_size=2) + xlab("Accumulated stage distance (km)") + ylim(1.5, -1.5) + labs(title = paste0("Pace chart over splits, ", stage_code),
   subtitle = paste0("Rebased relative to stage winner (",stage_winner_code,"), ", rally_name),
   x="Distance into stage (km)",
   y="Pace delta (s/km)",

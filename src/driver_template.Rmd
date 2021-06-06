@@ -113,15 +113,35 @@ driver_rebased = rebase(section_pace_wide, driverCode,
 split_N_col_idx = which(colnames(driver_rebased) == 'split_N')[[1]]
 
 caption = paste0(stage_info_$code, ' split section pace delta — ', driverCode)
-driver_rebased[,c('code',split_names)] %>%
+driver_rebased_split_wide = driver_rebased[,c('code',split_names)] %>%
                   filter_at(vars(starts_with("split_")),
-                                any_vars(! is.na(.)))  %>%
+                                any_vars(! is.na(.)))  
+driver_rebased_split_wide %>%
             #replace(is.na(.), 1e-9) %>%
             formattable(align='c',
                     list(area(col = 2:split_N_col_idx) ~ color_tile2(c("green",'white',"red")),
                  entryId=FALSE), caption=caption )
 ```
 
+### Within-Split Pace Map
+
+```{r pacemap-{{result_group}}-{{stage_code}}-{{driverCodeClean}}, cache=TRUE}
+driver_pace_long_rebased = driver_rebased_split_wide %>% 
+                gather(splitname, pace,
+                       as.character(split_names)) %>%
+                merge(full_split_distances_df[,c('splitname',
+                                          'start_dist', 'distance')],
+                      by='splitname')
+
+driver_pace_long_rebased %>%
+    pace_map( xstart='start_dist', id_col='code',
+         xend='distance', lines=FALSE, label_dodge=2,
+         label_size=2) + xlab("Accumulated stage distance (km)") + ylim(1.5, -1.5) + labs(title = paste0("Pace chart over splits, ", stage_code),
+  subtitle = paste0("Rebased relative to ", driverCode, ", ", rally_name),
+  x="Distance into stage (km)",
+  y="Pace delta (s/km)",
+  caption = "Created by: RallyDataJunkie.com" ) 
+```
 ```{r}
 cat(paste("Leave driver_template", driverEntryId),
     file=logFile, sep='\n')
